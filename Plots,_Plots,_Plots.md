@@ -10,6 +10,21 @@ Data Summary
 -   Continuous - displ, cyl, cty, hwy
 -   Categorical variables are type chr, whereas continuous variables are type dbl or int
 
+<!-- -->
+
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    234 obs. of  11 variables:
+    ##  $ manufacturer: chr  "audi" "audi" "audi" "audi" ...
+    ##  $ model       : chr  "a4" "a4" "a4" "a4" ...
+    ##  $ displ       : num  1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
+    ##  $ year        : int  1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
+    ##  $ cyl         : int  4 4 4 4 6 6 6 4 4 4 ...
+    ##  $ trans       : chr  "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
+    ##  $ drv         : chr  "f" "f" "f" "f" ...
+    ##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...
+    ##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...
+    ##  $ fl          : chr  "p" "p" "p" "p" ...
+    ##  $ class       : chr  "compact" "compact" "compact" "compact" ...
+
 Plots
 -----
 
@@ -17,24 +32,16 @@ Plots
 ggplot(mpg, aes(displ, hwy, color = class)) + geom_point()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 ``` r
 ggplot(mpg, aes(displ, hwy)) + geom_point() + facet_wrap(~ class, nrow =2)
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-3-1.png)
-
-``` r
-ggplot(mpg, aes(displ, hwy)) + geom_point() + facet_grid(drv ~ cyl)
-```
-
 ![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy)) +
-  facet_grid(drv ~ .)
+ggplot(mpg, aes(displ, hwy)) + geom_point() + facet_grid(drv ~ cyl)
 ```
 
 ![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-5-1.png)
@@ -42,10 +49,18 @@ ggplot(data = mpg) +
 ``` r
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) +
-  facet_grid(. ~ cyl)
+  facet_grid(drv ~ .)
 ```
 
 ![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+``` r
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ``` r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
@@ -53,7 +68,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_smooth()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 ``` r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
@@ -61,7 +76,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_smooth()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
 ggplot(mpg, aes(x = displ, y = hwy)) + 
@@ -69,7 +84,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_smooth(data = filter(mpg, class == "subcompact"), se = FALSE)
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
 ------------------------------------------------------------------------------------
@@ -85,7 +100,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
   geom_smooth(se = FALSE)
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 ``` r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
@@ -93,7 +108,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ``` r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
@@ -101,7 +116,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
   geom_smooth(se = FALSE)
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 ``` r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
@@ -109,7 +124,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_smooth(se = FALSE)
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 ``` r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
@@ -117,7 +132,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point(aes(colour = drv))
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 ``` r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
@@ -125,7 +140,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_smooth(aes(linetype = drv), se = FALSE)
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-15-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 ``` r
 str(diamonds)
@@ -148,7 +163,7 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-15-2.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-16-2.png)
 
 -   If you don’t want a stacked bar chart, you can use one of three other options: "identity", "dodge" or "fill".
 
@@ -157,14 +172,14 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar(alpha = 1/5, position = "identity")
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 ``` r
 ggplot(diamonds, aes(cut, color = clarity)) +
   geom_bar(fill = NA, position = "identity")
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 -   Position = "fill" works like stacking, but makes each set of stacked bars the same height. This makes it easier to compare proportions across groups.
 
@@ -173,7 +188,7 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar(position = "fill")
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 -   Position = "dodge" places overlapping objects directly beside one another. This makes it easier to compare individual values.
 
@@ -182,7 +197,7 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar(position = "dodge") 
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-19-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 -   Add randomness to plot for scale
 
@@ -191,4 +206,4 @@ ggplot(mpg, aes(displ, hwy)) +
   geom_jitter()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-21-1.png)
