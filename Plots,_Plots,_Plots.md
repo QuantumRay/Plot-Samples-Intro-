@@ -1,7 +1,7 @@
 Plot Samples
 ================
-Ray
-June 12, 2017
+Ray Zarkov
+12/06/2017
 
 #### Data Summary
 
@@ -132,16 +132,21 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 ![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 ``` r
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(aes(color = drv)) +
-  geom_smooth(aes(linetype = drv), se = FALSE)
+ggplot(diamonds, aes(price, carat, color = cut)) + 
+  geom_smooth(se = FALSE)
 ```
 
 ![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 ``` r
-str(diamonds)
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(aes(color = drv)) +
+  geom_smooth(aes(linetype = drv), se = FALSE)
 ```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-17-1.png)
+
+#### Diamonds Data Summary
 
     ## Classes 'tbl_df', 'tbl' and 'data.frame':    53940 obs. of  10 variables:
     ##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
@@ -160,7 +165,7 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-16-2.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 -   If you don’t want a stacked bar chart, you can use one of three other options: "identity", "dodge" or "fill".
 
@@ -169,14 +174,14 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar(alpha = 1/5, position = "identity")
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 ``` r
 ggplot(diamonds, aes(cut, color = clarity)) +
   geom_bar(fill = NA, position = "identity")
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
 -   Position = "fill" works like stacking, but makes each set of stacked bars the same height. This makes it easier to compare proportions across groups.
 
@@ -185,7 +190,7 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar(position = "fill")
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-19-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 -   Position = "dodge" places overlapping objects directly beside one another. This makes it easier to compare individual values.
 
@@ -194,7 +199,7 @@ ggplot(diamonds, aes(cut, fill = clarity)) +
   geom_bar(position = "dodge") 
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
 -   Add randomness to plot for scale
 
@@ -203,7 +208,7 @@ ggplot(mpg, aes(displ, hwy)) +
   geom_jitter()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
 #### Coordinate Systems
 
@@ -214,7 +219,7 @@ ggplot(mpg, aes(class, hwy)) +
   geom_boxplot()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-25-1.png)
 
 ``` r
 ggplot(mpg, aes(class, hwy)) +
@@ -222,7 +227,7 @@ ggplot(mpg, aes(class, hwy)) +
   coord_flip()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-22-2.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-25-2.png)
 
 -   coord\_polar() uses polar coordinates. Polar coordinates reveal an interesting connection between a bar chart and a Coxcomb chart.
 
@@ -235,13 +240,13 @@ bar <- ggplot(diamonds, aes(cut, fill = cut)) +
 bar + coord_flip()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-26-1.png)
 
 ``` r
 bar + coord_polar()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-2.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-26-2.png)
 
 ``` r
 # Turning a stacked bar chart into a pie chart using coord_polar().
@@ -250,7 +255,7 @@ ggplot(mpg, aes(factor(1), fill = class)) +
   coord_polar(theta = "y")
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-3.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-26-3.png)
 
 ``` r
 ggplot(mpg, aes(cty, hwy)) + 
@@ -258,7 +263,7 @@ ggplot(mpg, aes(cty, hwy)) +
   geom_abline()
 ```
 
-![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-4.png)
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-26-4.png)
 
 #### The layered grammer of graphics
 
