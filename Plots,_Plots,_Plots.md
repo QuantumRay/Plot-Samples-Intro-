@@ -3,8 +3,7 @@ Plot Samples
 Ray
 June 12, 2017
 
-Data Summary
-------------
+#### Data Summary
 
 -   Categorical - manufacturer, model, trans, drv, fl, class
 -   Continuous - displ, cyl, cty, hwy
@@ -25,8 +24,7 @@ Data Summary
     ##  $ fl          : chr  "p" "p" "p" "p" ...
     ##  $ class       : chr  "compact" "compact" "compact" "compact" ...
 
-Plots
------
+#### Plots
 
 ``` r
 ggplot(mpg, aes(displ, hwy, color = class)) + geom_point()
@@ -86,8 +84,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
-What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
-------------------------------------------------------------------------------------
+#### What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
 
 -   Line chart - geom\_line()
 -   Boxplot - geom\_boxplot()
@@ -207,3 +204,71 @@ ggplot(mpg, aes(displ, hwy)) +
 ```
 
 ![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-21-1.png)
+
+#### Coordinate Systems
+
+-   coord\_flip() switches x and y axes. This is useful (for example), if you want horizontal boxplots. It’s also useful for long labels: it’s hard to get them to fit without overlapping on the x-axis.
+
+``` r
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot()
+```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-22-1.png)
+
+``` r
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot() +
+  coord_flip()
+```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-22-2.png)
+
+-   coord\_polar() uses polar coordinates. Polar coordinates reveal an interesting connection between a bar chart and a Coxcomb chart.
+
+``` r
+bar <- ggplot(diamonds, aes(cut, fill = cut)) +
+  geom_bar(show.legend = FALSE, width = 1) +
+  theme(aspect.ratio = 1) +
+  labs(x = NULL, y = NULL)
+
+bar + coord_flip()
+```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-1.png)
+
+``` r
+bar + coord_polar()
+```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-2.png)
+
+``` r
+# Turning a stacked bar chart into a pie chart using coord_polar().
+ggplot(mpg, aes(factor(1), fill = class)) +
+  geom_bar(width = 1) + 
+  coord_polar(theta = "y")
+```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-3.png)
+
+``` r
+ggplot(mpg, aes(cty, hwy)) + 
+  geom_point() +
+  geom_abline()
+```
+
+![](Plots,_Plots,_Plots_files/figure-markdown_github/unnamed-chunk-23-4.png)
+
+#### The layered grammer of graphics
+
+``` r
+ # ggplot(data = <DATA>) +     
+ #    <GEOM_FUNCTION>(    
+ #      mapping = aes(<MAPPINGS>),  
+ #      stat = <STAT>,   
+ #      position = <POSITION>  
+ #    ) +  
+ #    <COORDINATE_FUNCTION> +  
+ #    <FACET_FUNCTION>
+```
